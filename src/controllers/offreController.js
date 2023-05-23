@@ -83,7 +83,17 @@ exports.getAllOffreStage = async (req, res) => {
 
 // get list of demonde d'offre de stage pour l'entreprise 
 
-
+exports.getStudentsByOfferId = async (req, res) => {
+  try {
+    const students = await User.find({type:0, demandeList: req.params.id });
+    if (!students) {
+      return res.status(404).json({ err: true, message: "No (data,operation) (found,done) ! " });
+    }
+    res.status(200).json({err: false, message: "Successful operation !", rows: students});
+  } catch (error) {
+    res.status(500).json({ err: true, message: error.message });
+  }
+};
 
 
 
