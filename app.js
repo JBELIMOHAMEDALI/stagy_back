@@ -1,0 +1,82 @@
+// ============imports=============
+const express = require("express");
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const path = require("path");
+const { strict } = require("assert");
+require("dotenv").config();
+const auth = require("./src/controllers/authController");
+const app = express();
+// ============ imporing routes ================
+
+const authRoute = require("./src/routes/authRoute");
+const offre = require("./src/routes/offreRoute");
+const demande = require("./src/routes/demandeRoute");//
+// const employeeRoute = require("./src/routes/employeeRoute");
+// const contractRoute = require("./src/routes/contractRoute");
+// const fileRoute = require("./src/routes/fileRoute");
+// const folderRoute = require("./src/routes/folderRoute");
+// const workOrderRoute = require("./src/routes/workOrderRoute");
+// const ticketRoute = require("./src/routes/ticketRoute");
+// const followUpRoute = require("./src/routes/followUpRoute");
+
+
+
+
+
+
+//========== configuration ============
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true })); //
+//app.use(userData);
+
+// configuring cors
+//app.use(cors);
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Methods",
+    "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+  );
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization, Cache-Control"
+  );
+  // intercept OPTIONS method
+  if ("OPTIONS" == req.method) {
+    res.status(200).send();
+  } else {
+    next();
+  }
+});
+//=========== connecting to database ==============
+let gfs;
+mongoose.set("strictQuery", true);
+mongoose   
+  .connect(
+    "mongodb://localhost:27017/stage",
+    // "mongodb://localhost:27017/gbs",
+    // "mongodb+srv://root:root@opmcluster.dvzi5iq.mongodb.net/OPM?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
+  .then(() => {
+    console.log("Connected to database");
+  })
+  .catch((err) => console.log("error has been occured: ", err));
+
+// connecting the file upload to mongoose
+
+
+
+
+// ========= configurring routes ==========
+
+//app.use("/user", userRoute); not going to use those 
+app.use("/auth",authRoute);
+app.use("/offre",offre);
+app.use("/demande",demande);
+
+module.exports = app;
