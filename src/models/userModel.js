@@ -19,13 +19,13 @@ const userSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    default: "0"
+    default: "0" // si 0 student si 1 entrp
   },
   CV: {
     type: String,
   },
 
-  offreList:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Offre' }],
+  saveOfferList:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Offre' }],
   demandeList:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Demande' }]
 
 });

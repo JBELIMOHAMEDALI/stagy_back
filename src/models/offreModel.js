@@ -24,8 +24,8 @@ const offreSchema = new mongoose.Schema({
   tel: {
     type: String,
     required: true
-  }
-  
+  },
+  enterpriseID:{ type: mongoose.Schema.Types.ObjectId,  required: true ,ref: 'User' },
 });
 const Offre = mongoose.model('Offre', offreSchema);
 

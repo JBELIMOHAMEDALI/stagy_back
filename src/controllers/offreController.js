@@ -7,6 +7,7 @@ const User = require('../models/userModel');
 exports.SaveOffreEtud = async (req, res) => {
   const userID = req.params.id_u;
   const offreID = req.params.id_o;
+
   try {  
     const saveOffre = await User.findByIdAndUpdate(
       userID ,
@@ -18,34 +19,45 @@ exports.SaveOffreEtud = async (req, res) => {
     res.status(500).json({ err: true, message: error.message });
   }
 };
+// add demand for list user 
+exports.savedemandeOffre = async (req, res) => {
+  const userID = req.params.id_u;
+  const offreID = req.params.id_o;
 
-
-exports.getSavedEtud = async (req, res) => {
-  const offreID = req.params.offreID;
-  const etudiontID = req.params.etudiontID;
-  try {
-    // const offre = await offre.findOne({ offreID });
-    const offres = await Saveof.find({ etudiontID }).populate(offreID);
-    if (!offres) {
-      return res.status(404).json({ err: true, message: "No (data,operation) (found,done) ! " });
-    }
-    res.status(200).json({err: false, message: "Successful operation !", rows: offres});
+  try {  
+    const saveOffre = await User.findByIdAndUpdate(
+      userID ,
+        { $push: { demandeList:offreID } },
+        { new: true }
+       );
+   res.status(200).json({err: false, message: "Successful operation !", rows: saveOffre});
   } catch (error) {
     res.status(500).json({ err: true, message: error.message });
   }
 };
- 
-/*   
 
+// Get all offers get les offre de etudiont 
+// exports.getAllOffers = async (req, res) => {
+//     try {
+//       var offer = await Offre.find().populate('listOfOffers');
+//       res.status(200).json({err: false, message: "Successful operation !", rows: offer});
+//     } catch (error) {
+//       res.status(500).json({ err: true, message: error.message });
+//     }
+//   };
 
-
-
-
-
-
-
-*/
-
+  // gget offre fro student  
+exports.getOfferByStudentIdSave = async (req, res) => {
+    try {
+      const offer = await User.findById(req.params.id).populate('saveOfferList').select('-nome -prenom -email -password -type -demandeList');
+      if (!offer) {
+        return res.status(404).json({ err: true, message: "No (data,operation) (found,done) ! " });
+      }
+      res.status(200).json({err: false, message: "Successful operation !", rows: offer});
+    } catch (error) {
+      res.status(500).json({ err: true, message: error.message });
+    }
+  };
 
 exports.createOffreStage = async (req, res) => {
  
@@ -68,6 +80,33 @@ exports.getAllOffreStage = async (req, res) => {
     }
   };
   
+
+// get list of demonde d'offre de stage pour l'entreprise 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   // Get a single Offre Stage 
   exports.getOneOffreStageByID = async (req, res, next) => {
       try {

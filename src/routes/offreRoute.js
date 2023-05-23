@@ -9,6 +9,8 @@ router.put('/update', offre.updateOffreStage);
 router.delete('/delete/:id', offre.deleteOffreStage);
 
 router.post('/SaveOffreEtud/:id_u/:id_o', offre.SaveOffreEtud);
-router.get('/getSavedEtud/:offreID/:etudiontID', offre.getSavedEtud);
+// router.get('/getAllOffers', offre.getAllOffers);
+router.get('/getOfferByStudentIdSave/:id', offre.getOfferByStudentIdSave);
+//rouut add demonde 
 
 module.exports = router;
