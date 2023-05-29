@@ -15,11 +15,9 @@ exports.register = async (req, res) => {
     res.status(500).json({ message: 'Error registering user' });
   }
 };
-
 exports.login = async (req, res) => {
   const { email, password } = req.body;
   try {
-
     user = await User.findOne({ email });
     if (!user) {
       return res.status(401).json({ message: 'Invalid email or password' });
@@ -28,7 +26,6 @@ exports.login = async (req, res) => {
     if (!passwordMatch) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }else{
-
       res.status(200).json({ message: 'Login successful', payload : user});
     }
   } catch (error) {

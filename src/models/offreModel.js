@@ -25,7 +25,13 @@ const offreSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  requirement: {
+    type: String,
+    required: true
+  },
   enterpriseID:{ type: mongoose.Schema.Types.ObjectId,  required: true ,ref: 'User' },
+  userDemonde:{ type: mongoose.Schema.Types.ObjectId,  required: true ,ref: 'User' },
+  // userproposition:{ type: mongoose.Schema.Types.ObjectId,  required: true ,ref: 'User' },
 });
 const Offre = mongoose.model('Offre', offreSchema);
 

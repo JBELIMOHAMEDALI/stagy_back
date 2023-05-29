@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
-  nome: {
+  companyDomain: {
     type: String,
-    required: true,
   },
-  prenom: {
+  companyName: {
     type: String,
-    required: true,
   },
   email: {
     type: String,
@@ -17,17 +15,20 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  type: {
+  fullName: {
     type: String,
-    default: "0" // si 0 student si 1 entrp
+  },
+  authority: {
+    type: String,
+    enum: ['Student', 'Company'],
+    required: true
   },
   CV: {
     type: String,
   },
-
   saveOfferList:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Offre' }],
-  demandeList:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Demande' }]
-
+  demandeList:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Offre' }]
+//
 });
 const User = mongoose.model('User', userSchema);
 
