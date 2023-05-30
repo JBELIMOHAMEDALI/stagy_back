@@ -11,6 +11,7 @@ const app = express();
 
 const authRoute = require("./src/routes/authRoute");
 const offre = require("./src/routes/offreRoute");
+const suggestion = require("./src/routes/suggestionRoute");
 // const employeeRoute = require("./src/routes/employeeRoute");
 // const contractRoute = require("./src/routes/contractRoute");
 // const fileRoute = require("./src/routes/fileRoute");
@@ -76,5 +77,6 @@ mongoose
 //app.use("/user", userRoute); not going to use those 
 app.use("/auth",authRoute);
 app.use("/offre",offre);
+app.use("/suggestion",suggestion);
 
 module.exports = app;

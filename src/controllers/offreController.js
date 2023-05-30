@@ -1,5 +1,4 @@
 const Offre = require('../models/offreModel');
-const Saveof = require('../models/saveoffModel');
 const User = require('../models/userModel');
 
 // tzed beha offre lil socite 
@@ -21,7 +20,7 @@ exports.getAllOffreStage = async (req, res) => {
       res.status(500).json({ message: err.message });
     }
   };
-  
+
   // Get a single Offre Stage  bay id 
   exports.getOneOffreStageByID = async (req, res, next) => {
       try {
@@ -82,12 +81,12 @@ exports.getOffreBayCompany = async (req, res) => {
 
 // save offre 
 exports.SaveOffreEtud = async (req, res) => {
-  const userID = req.params.id_u;
-  const offreID = req.params.id_o;
-
+  const userID = req.body.id_u;
+  const offreID = req.body.id_o;
   try {  
     const saveOffre = await User.findByIdAndUpdate(
       userID ,
+
         { $push: { saveOfferList:offreID } },
         { new: true }
        );
@@ -98,16 +97,32 @@ exports.SaveOffreEtud = async (req, res) => {
 };
 //send demonde 
 exports.sanddemandeOffre = async (req, res) => {
-  const userID = req.params.id_u;
-  const offreID = req.params.id_o;
-
+  const userID = req.body.id_u;
+  const offreID = req.body.id_o;
   try {  
     const saveOffre = await User.findByIdAndUpdate(
       userID ,
-        { $push: { demandeList:offreID } },
+        { $push: { demandeList:{demonde:offreID,status :"In Progress"} } },
         { new: true }
        );
+    const saveDemonde = await Offre.findByIdAndUpdate(
+      offreID ,
+          { $push: { userDemonde:userID } },
+          { new: true }
+         );
    res.status(200).json({err: false, message: "Successful operation !", rows: saveOffre});
+  } catch (error) {
+    res.status(500).json({ err: true, message: error.message });
+  }
+};
+    // gget offre saved fro student  
+exports.getOfferByStudentIdSave = async (req, res) => {
+  try {
+    const offer = await User.findById(req.params.id).populate('saveOfferList');
+    if (!offer) {
+      return res.status(404).json({ err: true, message: "No (data,operation) (found,done) ! " });
+    }
+    res.status(200).json({err: false, message: "Successful operation !", rows: offer});
   } catch (error) {
     res.status(500).json({ err: true, message: error.message });
   }
@@ -116,10 +131,10 @@ exports.sanddemandeOffre = async (req, res) => {
 
 
 
-    // gget offre saved fro student  
-exports.getOfferByStudentIdSave = async (req, res) => {
+// get may demonde for student
+exports.getOfferByStudentIdDemonde = async (req, res) => {
   try {
-    const offer = await User.findById(req.params.id).populate('saveOfferList').select('-nome -prenom -email -password -type -demandeList');
+    const offer = await User.findById(req.params.id).populate('demandeList.demonde');
     if (!offer) {
       return res.status(404).json({ err: true, message: "No (data,operation) (found,done) ! " });
     }
@@ -143,9 +158,36 @@ exports.getStudentsByOfferId = async (req, res) => {
 };
 
 // add demand for list user 
-
-
-
+exports.RemoveSavedOffre = async (req, res) => {
+  try {
+      const user = await User.findByIdAndUpdate(
+        req.params.user_id ,
+        { $pull: { saveOfferList: req.params.offre_Id } },
+        { new: true }
+       );
+      res.status(200).json({ err: false, message: "Successful operation !", rows: user });
+  } catch (error) {
+    res.status(500).json({ err: true, message: error.message });
+  }
+};
+// update status fro demone tebaa compny ne9ssa bech naamil update lil liste ?
+exports.updateDemondeStatus = async (req, res) => {
+  try {
+    const { status,id } = req.body;
+    const user = await User.findOneAndUpdate(
+      { id },
+      {status},
+      { new: true }
+    );
+    if (!user) {
+      return res.status(404).send({ message: "Operation Failed" });
+    }
+    res.status(200).send(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send({ message: "Internal server error" });
+  }
+};
 
 
 

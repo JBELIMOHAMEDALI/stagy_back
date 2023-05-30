@@ -27,11 +27,11 @@ const offreSchema = new mongoose.Schema({
   },
   requirement: {
     type: String,
-    required: true
+   
   },
   enterpriseID:{ type: mongoose.Schema.Types.ObjectId,  required: true ,ref: 'User' },
-  userDemonde:{ type: mongoose.Schema.Types.ObjectId,  required: true ,ref: 'User' },
-  // userproposition:{ type: mongoose.Schema.Types.ObjectId,  required: true ,ref: 'User' },
+  // userDemonde:{ type: mongoose.Schema.Types.ObjectId,ref: 'User' },
+
 });
 const Offre = mongoose.model('Offre', offreSchema);
 
