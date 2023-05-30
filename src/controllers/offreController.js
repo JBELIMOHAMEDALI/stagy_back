@@ -173,10 +173,10 @@ exports.RemoveSavedOffre = async (req, res) => {
 // update status fro demone tebaa compny ne9ssa bech naamil update lil liste ?
 exports.updateDemondeStatus = async (req, res) => {
   try {
-    const { status,id } = req.body;
+    const { status, id, demandeId } = req.body;
     const user = await User.findOneAndUpdate(
-      { id },
-      {status},
+      { id, 'demandeList.demonde':demandeId},
+      { $set:{ 'demandeList.$.status':status } },
       { new: true }
     );
     if (!user) {
