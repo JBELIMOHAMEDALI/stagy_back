@@ -31,8 +31,11 @@ const createFolder = (folderPath) => {
  });
 
  const filefilter = (req, file, cb) => {
-    if (file.mimetype === 'image/png' || file.mimetype === 'image/jpg' 
-        || file.mimetype === 'image/jpeg'){
+    if (file.mimetype === 'image/png' ||
+        file.mimetype === 'image/jpg' ||
+        file.mimetype === 'image/jpeg' ||
+        file.mimetype === 'application/pdf' // Add the PDF MIME type check
+        ){
             cb(null, true);
         }else {
             cb(null, false);
