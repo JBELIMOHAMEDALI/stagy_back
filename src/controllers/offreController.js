@@ -66,18 +66,18 @@ exports.getAllOffreStage = async (req, res) => {
   };
 
 // get les oofre en fonc de socite 
-exports.getOffreBayCompany = async (req, res) => {
-  try {
-    //const offer = await User.findById(req.params.id).populate(Offre.enterpriseID)  //findById(req.params.id).populate('offres');
-    const offer = await Offre.find({enterpriseID :req.params.id})  //findById(req.params.id).populate('offres');
-    if (!offer) {
-      return res.status(404).json({ err: true, message: "No (data,operation) (found,done) ! " });
-    }
-    res.status(200).json({err: false, message: "Successful operation !", rows: offer});
-  } catch (error) {
-    res.status(500).json({ err: true, message: error.message });
-  }
-};
+// exports.getOffreBayCompany = async (req, res) => {
+//   try {
+//     //const offer = await User.findById(req.params.id).populate(Offre.enterpriseID)  //findById(req.params.id).populate('offres');
+//     const offer = await Offre.find({enterpriseID :req.params.id})  //findById(req.params.id).populate('offres');
+//     if (!offer) {
+//       return res.status(404).json({ err: true, message: "No (data,operation) (found,done) ! " });
+//     }
+//     res.status(200).json({err: false, message: "Successful operation !", rows: offer});
+//   } catch (error) {
+//     res.status(500).json({ err: true, message: error.message });
+//   }
+// };
 
 // save offre 
 exports.SaveOffreEtud = async (req, res) => {
@@ -96,25 +96,25 @@ exports.SaveOffreEtud = async (req, res) => {
   }
 };
 //send demonde 
-exports.sanddemandeOffre = async (req, res) => {
-  const userID = req.body.id_u;
-  const offreID = req.body.id_o;
-  try {  
-    const saveOffre = await User.findByIdAndUpdate(
-      userID ,
-        { $push: { demandeList:{demonde:offreID,status :"In Progress"} } },
-        { new: true }
-       );
-    const saveDemonde = await Offre.findByIdAndUpdate(
-      offreID ,
-          { $push: { userDemonde:userID } },
-          { new: true }
-         );
-   res.status(200).json({err: false, message: "Successful operation !", rows: saveOffre});
-  } catch (error) {
-    res.status(500).json({ err: true, message: error.message });
-  }
-};
+// exports.sanddemandeOffre = async (req, res) => {
+//   const userID = req.body.id_u;
+//   const offreID = req.body.id_o;
+//   try {  
+//     const saveOffre = await User.findByIdAndUpdate(
+//       userID ,
+//         { $push: { demandeList:{demonde:offreID,status :"In Progress"} } },
+//         { new: true }
+//        );
+//     const saveDemonde = await Offre.findByIdAndUpdate(
+//       offreID ,
+//           { $push: { userDemonde:userID } },
+//           { new: true }
+//          );
+//    res.status(200).json({err: false, message: "Successful operation !", rows: saveOffre});
+//   } catch (error) {
+//     res.status(500).json({ err: true, message: error.message });
+//   }
+// };
     // gget offre saved fro student  
 exports.getOfferByStudentIdSave = async (req, res) => {
   try {
@@ -127,22 +127,18 @@ exports.getOfferByStudentIdSave = async (req, res) => {
     res.status(500).json({ err: true, message: error.message });
   }
 };
-
-
-
-
 // get may demonde for student
-exports.getOfferByStudentIdDemonde = async (req, res) => {
-  try {
-    const offer = await User.findById(req.params.id).populate('demandeList.demonde');
-    if (!offer) {
-      return res.status(404).json({ err: true, message: "No (data,operation) (found,done) ! " });
-    }
-    res.status(200).json({err: false, message: "Successful operation !", rows: offer});
-  } catch (error) {
-    res.status(500).json({ err: true, message: error.message });
-  }
-};
+// exports.getOfferByStudentIdDemonde = async (req, res) => {
+//   try {
+//     const offer = await User.findById(req.params.id).populate('demandeList.demonde');
+//     if (!offer) {
+//       return res.status(404).json({ err: true, message: "No (data,operation) (found,done) ! " });
+//     }
+//     res.status(200).json({err: false, message: "Successful operation !", rows: offer});
+//   } catch (error) {
+//     res.status(500).json({ err: true, message: error.message });
+//   }
+// };
 // --------------------------------------------------------------------------------------------------------------------
   // get list of demonde d'offre de stage pour l'entreprise 
 exports.getStudentsByOfferId = async (req, res) => {
@@ -190,5 +186,15 @@ exports.updateDemondeStatus = async (req, res) => {
 };
 
 
-
+exports.getListDemondeForCompny = async (req, res) => {
+  try {
+    const demonde = await User.findById(req.params.id).populate('demandeList.demonde');
+    if (!demonde) {
+      return res.status(404).json({ err: true, message: "No (data,operation) (found,done) ! " });
+    }
+    res.status(200).json({err: false, message: "Successful operation !", rows: demonde});
+  } catch (error) {
+    res.status(500).json({ err: true, message: error.message });
+  }
+};
 

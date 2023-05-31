@@ -28,8 +28,6 @@ const userSchema = new mongoose.Schema({
   },
   saveOfferList:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Offre'}],
   demandeList:[{status :{type:String, enum: ['In Progress', 'Accepted','Refused']},demonde :{ type: mongoose.Schema.Types.ObjectId, ref: 'Offre' }},],  
-
-//
 });
 const User = mongoose.model('User', userSchema);
 

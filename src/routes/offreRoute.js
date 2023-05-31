@@ -10,11 +10,11 @@ router.delete('/delete/:id', offre.deleteOffreStage);
 // add offre to may offre 
 router.post('/SaveOffreEtud', offre.SaveOffreEtud);
 // sed deomende to entreprise 
-router.post('/sanddemandeOffre', offre.sanddemandeOffre);//
+// router.post('/sanddemandeOffre', offre.sanddemandeOffre);//
 // router.get('/getAllOffers', offre.getAllOffers);
 router.get('/getOfferByStudentIdSave/:id', offre.getOfferByStudentIdSave);
-router.get('/getOfferByStudentIdDemonde/:id', offre.getOfferByStudentIdDemonde);
-router.get('/getOffreBayCompany/:id', offre.getOffreBayCompany);
+// router.get('/getOfferByStudentIdDemonde/:id', offre.getOfferByStudentIdDemonde);
+// router.get('/getOffreBayCompany/:id', offre.getOffreBayCompany);
 //taadilha id entreprise bech trjaalik les offre anhom eli aamlou fih (tbaath id offre trjaalik les etidiont )
 router.get('/getStudentsByOfferId/:id_offre', offre.getStudentsByOfferId);
 //rouut add demonde 
@@ -22,6 +22,7 @@ router.get('/getStudentsByOfferId/:id_offre', offre.getStudentsByOfferId);
 router.delete('/removeSavedOffre/:user_id/:offre_Id', offre.RemoveSavedOffre);
 router.put('/updateDemondeStatus', offre.updateDemondeStatus);
 
+router.get('/getListDemondeForCompny/:id', offre.getListDemondeForCompny);
 
 //
 module.exports = router;

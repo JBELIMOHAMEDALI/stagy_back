@@ -25,7 +25,6 @@ exports.getOneSuggestionByidAndStudentidEnterpriseidall = async (req, res, next)
   }
 };
 
-
 exports.getOneSuggestionByidAndStudentid = async (req, res, next) => {
   try {
     const suggestion = await Suggestion.findById(req.params.id ).populate("enterpriseID" );
@@ -49,16 +48,6 @@ exports.getAllforCompny = async (req, res) => {
     res.status(500).json({ err: true, message: error.message });
   }
 };
-
-
-
-
-
-
-
-
-
-
 exports.getAllforStudents = async (req, res) => {
   try {
     const offer = await Suggestion.find({StudentID:req.params.id}).populate('enterpriseID');
@@ -70,26 +59,15 @@ exports.getAllforStudents = async (req, res) => {
     res.status(500).json({ err: true, message: error.message });
   }
 };
-
-
 exports.updateSuggestion = async (req, res) => {
   try {
-    const { status,id } = req.body;
-    const suggestion = await Suggestion.findOneAndUpdate(
-      { id },
-      {status},
-      { new: true }
-    );
-    if (!suggestion) {
-      return res.status(404).send({ message: "Operation Failed" });
-    }
+    const suggestion = await Suggestion.findByIdAndUpdate(req.body.id, {status:req.body.status},{new:true})
     res.status(200).send(suggestion);
   } catch (err) {
     console.error(err);
     res.status(500).send({ message: "Internal server error" });
   }
 };
-
 exports.getAllCompny = async (req, res) => {
   try {
     const user = await User.find({authority:"Company"})
@@ -98,8 +76,6 @@ exports.getAllCompny = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-
-
 exports.deleteSuggestion = async (req, res, next) => {
   try {
     const id = req.params.id;

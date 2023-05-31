@@ -8,8 +8,10 @@ router.get('/getoneAllbayIdSuggestion/:id', suggestion.getOneSuggestionByidAndSt
 router.get('/getoneForStudent/:id', suggestion.getOneSuggestionByidAndStudentid);
 router.get('/getAllSuggestionForCompny/:id', suggestion.getAllforCompny);
 router.get('/getAllSuggestionForStudent/:id', suggestion.getAllforStudents);
-router.put('/updateSuggestion', suggestion.updateSuggestion);
+router.post('/updateSuggestion', suggestion.updateSuggestion);
 router.delete('/delete/:id', suggestion.deleteSuggestion);
 
-// getAllCompny
+
+
+// 
 module.exports = router;
