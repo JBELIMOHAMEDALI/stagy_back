@@ -2,13 +2,18 @@ const bcrypt = require('bcrypt');
 const User = require('../models/userModel');
 
 exports.register = async (req, res) => {
-  const { nome,prenom,email, password, type } = req.body;
+  const {password} = req.body;
   try {
     const salt = await bcrypt.genSalt();
     const hashedPassword = await bcrypt.hash(password, salt);
     let obj = User (req.body) ;
     obj.password = hashedPassword;
-    obj.cv = req.file.destination;
+    if(req.file){
+      const path = req.file.destination;
+      let portion = path.substring(path.indexOf('cvUplodes'));
+      portion +='/'+req.file.filename
+      obj.cv = portion;
+    }
     await obj.save();
     res.status(201).json({ message: 'User created successfully'});
   } catch (error) {

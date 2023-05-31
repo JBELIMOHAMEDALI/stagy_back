@@ -12,18 +12,16 @@ const createFolder = (folderPath) => {
   // Create the folder
   fs.mkdirSync(folderPath, { recursive: true });
 };
-
-
  const storage = multer.diskStorage ({
     destination: (req, file, cb) => {
-        const uploadDir = path.join("uploads");
-        const newFolderPath = path.join(uploadDir, req.body.userId, req.body.fileType);
+        // const uploadDir = path.join("uploads");
+        // const newFolderPath = path.join(uploadDir, req.body.userId);
     
         // Create the new folder
-        createFolder(newFolderPath);
+        // createFolder(newFolderPath);
     
         // Set the destination folder for the file
-        cb(null, newFolderPath);
+        cb(null, "I:/project_ahlem/v2/stagy/src/assets/cvUplodes");
       },
     filename: (req, file, cb) => {
         cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname);

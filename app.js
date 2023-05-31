@@ -13,6 +13,7 @@ const authRoute = require("./src/routes/authRoute");
 const offre = require("./src/routes/offreRoute");
 const suggestion = require("./src/routes/suggestionRoute");
 const demonde = require("./src/routes/demondeRoute");
+const dashbooard = require("./src/routes/dashboardRoute");
 // const employeeRoute = require("./src/routes/employeeRoute");
 // const contractRoute = require("./src/routes/contractRoute");
 // const fileRoute = require("./src/routes/fileRoute");
@@ -80,5 +81,6 @@ app.use("/auth",authRoute);
 app.use("/offre",offre);
 app.use("/suggestion",suggestion);
 app.use("/demonde",demonde);
+app.use("/dashbooard",dashbooard);
 
 module.exports = app;

@@ -66,18 +66,18 @@ exports.getAllOffreStage = async (req, res) => {
   };
 
 // get les oofre en fonc de socite 
-// exports.getOffreBayCompany = async (req, res) => {
-//   try {
-//     //const offer = await User.findById(req.params.id).populate(Offre.enterpriseID)  //findById(req.params.id).populate('offres');
-//     const offer = await Offre.find({enterpriseID :req.params.id})  //findById(req.params.id).populate('offres');
-//     if (!offer) {
-//       return res.status(404).json({ err: true, message: "No (data,operation) (found,done) ! " });
-//     }
-//     res.status(200).json({err: false, message: "Successful operation !", rows: offer});
-//   } catch (error) {
-//     res.status(500).json({ err: true, message: error.message });
-//   }
-// };
+exports.getOffreBayCompany = async (req, res) => {
+  try {
+    //const offer = await User.findById(req.params.id).populate(Offre.enterpriseID)  //findById(req.params.id).populate('offres');
+    const offer = await Offre.find({enterpriseID :req.params.id})  //findById(req.params.id).populate('offres');
+    if (!offer) {
+      return res.status(404).json({ err: true, message: "No (data,operation) (found,done) ! " });
+    }
+    res.status(200).json({err: false, message: "Successful operation !", rows: offer});
+  } catch (error) {
+    res.status(500).json({ err: true, message: error.message });
+  }
+};
 
 // save offre 
 exports.SaveOffreEtud = async (req, res) => {

@@ -14,7 +14,7 @@ router.post('/SaveOffreEtud', offre.SaveOffreEtud);
 // router.get('/getAllOffers', offre.getAllOffers);
 router.get('/getOfferByStudentIdSave/:id', offre.getOfferByStudentIdSave);
 // router.get('/getOfferByStudentIdDemonde/:id', offre.getOfferByStudentIdDemonde);
-// router.get('/getOffreBayCompany/:id', offre.getOffreBayCompany);
+router.get('/getOffreBayCompany/:id', offre.getOffreBayCompany);
 //taadilha id entreprise bech trjaalik les offre anhom eli aamlou fih (tbaath id offre trjaalik les etidiont )
 router.get('/getStudentsByOfferId/:id_offre', offre.getStudentsByOfferId);
 //rouut add demonde 
