@@ -14,18 +14,6 @@ const offre = require("./src/routes/offreRoute");
 const suggestion = require("./src/routes/suggestionRoute");
 const demonde = require("./src/routes/demondeRoute");
 const dashbooard = require("./src/routes/dashboardRoute");
-// const employeeRoute = require("./src/routes/employeeRoute");
-// const contractRoute = require("./src/routes/contractRoute");
-// const fileRoute = require("./src/routes/fileRoute");
-// const folderRoute = require("./src/routes/folderRoute");
-// const workOrderRoute = require("./src/routes/workOrderRoute");
-// const ticketRoute = require("./src/routes/ticketRoute");
-// const followUpRoute = require("./src/routes/followUpRoute");
-
-
-
-
-
 
 //========== configuration ============
 app.use(bodyParser.json());
@@ -57,8 +45,6 @@ mongoose.set("strictQuery", true);
 mongoose   
   .connect(
     "mongodb://localhost:27017/stage",
-    // "mongodb://localhost:27017/gbs",
-    // "mongodb+srv://root:root@opmcluster.dvzi5iq.mongodb.net/OPM?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -76,7 +62,6 @@ mongoose
 
 // ========= configurring routes ==========
 
-//app.use("/user", userRoute); not going to use those 
 app.use("/auth",authRoute);
 app.use("/offre",offre);
 app.use("/suggestion",suggestion);

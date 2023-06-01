@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const userSchema = new mongoose.Schema({
   companyDomain: {
     type: String,
@@ -27,7 +26,6 @@ const userSchema = new mongoose.Schema({
     type: String,
   },
   saveOfferList:[{ type: mongoose.Schema.Types.ObjectId, ref: 'Offre'}],
-  // demandeList:[{status :{type:String, enum: ['In Progress', 'Accepted','Refused']},demonde :{ type: mongoose.Schema.Types.ObjectId, ref: 'Offre' }},],  
 });
 const User = mongoose.model('User', userSchema);
 

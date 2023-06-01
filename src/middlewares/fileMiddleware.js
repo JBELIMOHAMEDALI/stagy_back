@@ -14,13 +14,7 @@ const createFolder = (folderPath) => {
 };
  const storage = multer.diskStorage ({
     destination: (req, file, cb) => {
-        // const uploadDir = path.join("uploads");
-        // const newFolderPath = path.join(uploadDir, req.body.userId);
-    
-        // Create the new folder
-        // createFolder(newFolderPath);
-    
-        // Set the destination folder for the file
+
         cb(null, "I:/project_ahlem/v2/stagy/src/assets/cvUplodes");
       },
     filename: (req, file, cb) => {
