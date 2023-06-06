@@ -8,6 +8,7 @@ router.get('/getAllUsersBayAuthority/:authority', adminroot.getAllUsersBayAuthor
 router.get('/getAllUsersBayAuthorityAndValide/:authority/:valid', adminroot.getAllUsersBayAuthorityAndValide);
 router.post('/updateStatusStudentOrCopmny', adminroot.updateStatusStudentOrCopmny);
 
+router.get('/counUsersBayAuthority/:authority', adminroot.counUsersBayAuthority);
 
 router.get('/countAccountByValid/:valid', adminroot.countAccountByValid);
 router.get('/countAllDemande', adminroot.countAllDemande);

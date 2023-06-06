@@ -104,27 +104,14 @@ exports.getAllUsersBayAuthorityAndValide = async (req, res) => {
   };
 
 
-  exports.countAccountByValid= async (req, res) => {
-    const valid =req.params.valid
+  exports.counUsersBayAuthority= async (req, res) => {
+    const authority =req.params.authority
     try {
-      const user = await User.findByIdAndUpdate(
-        req.body.id ,
-        { $push: { img: uploadedFiles } },
-        { new: true }
-       );
-       res.status(200).json({ 
-        err: false, 
-        message: "Successful operation !", 
-       rows: [ticket, files.map(file => file.originalname)] 
-      });
+      const count = await User.countDocuments({authority:authority});
+      res.status(200).json({err: false, message: "Successful operation !", rows: {count} });
     } catch (error) {
       console.error(error);
       res.status(500).json({ err: true, message: error.message });
     }
   };
-
-  /* 
-  
- 
-  
-  */
+// 
