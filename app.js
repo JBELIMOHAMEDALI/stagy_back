@@ -14,7 +14,7 @@ const offre = require("./src/routes/offreRoute");
 const suggestion = require("./src/routes/suggestionRoute");
 const demonde = require("./src/routes/demondeRoute");
 const dashbooard = require("./src/routes/dashboardRoute");
-
+const admin  = require("./src/routes/adminRouter");
 //========== configuration ============
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); //
@@ -67,5 +67,6 @@ app.use("/offre",offre);
 app.use("/suggestion",suggestion);
 app.use("/demonde",demonde);
 app.use("/dashbooard",dashbooard);
+app.use("/admin",admin);
 
 module.exports = app;
