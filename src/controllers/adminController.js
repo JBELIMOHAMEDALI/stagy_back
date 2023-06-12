@@ -31,7 +31,7 @@ exports.getAllUsersBayAuthority = async (req, res) => {
   } catch (error) {
     res.status(500).json({ err: true, message: error.message });
   }
-};
+  };
 exports.getAllUsersBayAuthorityAndValide = async (req, res) => {
     const authority =req.params.authority
     const valid =req.params.valid
@@ -62,9 +62,6 @@ exports.getAllUsersBayAuthorityAndValide = async (req, res) => {
       res.status(500).send({ message: "Internal server error" });
     }
   };
-
-
-
   exports.countAllDemande = async (req, res) => {
     try {
       const count = await Demonde.count();
@@ -102,8 +99,6 @@ exports.getAllUsersBayAuthorityAndValide = async (req, res) => {
       res.status(500).json({ err: true, message: error.message });
     }
   };
-
-
   exports.counUsersBayAuthority= async (req, res) => {
     const authority =req.params.authority
     try {
@@ -114,4 +109,3 @@ exports.getAllUsersBayAuthorityAndValide = async (req, res) => {
       res.status(500).json({ err: true, message: error.message });
     }
   };
-// 

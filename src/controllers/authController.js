@@ -13,6 +13,7 @@ exports.register = async (req, res) => {
       const path = req.file.destination;
       let portion = path.substring(path.indexOf('cvUplodes'));
       portion +='/'+req.file.filename
+      portion = 'http://localhost:4200/assets/'+portion
       obj.cv = portion;
     }
     await obj.save();

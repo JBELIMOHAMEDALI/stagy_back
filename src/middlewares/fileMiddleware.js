@@ -15,7 +15,7 @@ const createFolder = (folderPath) => {
  const storage = multer.diskStorage ({
     destination: (req, file, cb) => {
 
-        cb(null, "I:/project_ahlem/v2/stagy/src/assets/cvUplodes");
+        cb(null, "E:/end_pfe/New folder/stgy_Frontend/src/assets/cvUplodes");
       },
     filename: (req, file, cb) => {
         cb(null, new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname);
